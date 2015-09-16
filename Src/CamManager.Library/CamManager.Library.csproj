@@ -1,0 +1,190 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{4BB5A6CE-A638-465E-B580-8A69B03D4407}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>xCom.CamManager.Library</RootNamespace>
+    <AssemblyName>CamManager.Library</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="CamFactory.cs" />
+    <Compile Include="Cams\Foscam\FI9821W.cs" />
+    <Compile Include="ICam.cs" />
+    <Compile Include="AbstractCam.cs" />
+    <Compile Include="CamException.cs" />
+    <Compile Include="ResultSet.cs" />
+    <Compile Include="ResultState.cs" />
+    <Compile Include="Data\AV\IImageInfo.cs" />
+    <Compile Include="Data\AV\ImageInfo.cs" />
+    <Compile Include="Data\PTZ\Speed.cs" />
+    <Compile Include="Data\AV\IMirrorFlipInfo.cs" />
+    <Compile Include="Data\AV\MirrorFlipInfo.cs" />
+    <Compile Include="Data\AV\PowerFrequence.cs" />
+    <Compile Include="Data\AV\IVideoStreamInfo.cs" />
+    <Compile Include="Data\AV\StreamType.cs" />
+    <Compile Include="Data\AV\VideoStreamInfo.cs" />
+    <Compile Include="Data\AV\StreamFormat.cs" />
+    <Compile Include="Data\Device\DeviceInfo.cs" />
+    <Compile Include="Data\Device\DeviceState.cs" />
+    <Compile Include="Data\Device\IDeviceInfo.cs" />
+    <Compile Include="Data\Device\IDeviceState.cs" />
+    <Compile Include="Data\Device\AlarmType.cs" />
+    <Compile Include="Data\Device\DDNSState.cs" />
+    <Compile Include="Data\Device\NtpState.cs" />
+    <Compile Include="Data\Device\SDCardState.cs" />
+    <Compile Include="Data\Device\UPnPState.cs" />
+    <Compile Include="Data\CurNotUsed\AlarmLinkage.cs" />
+    <Compile Include="Data\CurNotUsed\AuthenticationMode.cs" />
+    <Compile Include="Data\CurNotUsed\DDNSServerType.cs" />
+    <Compile Include="Data\CurNotUsed\EncryptionType.cs" />
+    <Compile Include="Data\CurNotUsed\FirewallConfig.cs" />
+    <Compile Include="Data\CurNotUsed\FtpMode.cs" />
+    <Compile Include="Data\CurNotUsed\IAccessPoint.cs" />
+    <Compile Include="Data\CurNotUsed\IAlarmRecord.cs" />
+    <Compile Include="Data\CurNotUsed\IDateConfig.cs" />
+    <Compile Include="Data\CurNotUsed\IDDNSConfig.cs" />
+    <Compile Include="Data\CurNotUsed\IFirewallConfig.cs" />
+    <Compile Include="Data\CurNotUsed\IFtpConfig.cs" />
+    <Compile Include="Data\CurNotUsed\IIOAlarmRecord.cs" />
+    <Compile Include="Data\CurNotUsed\ILogEntry.cs" />
+    <Compile Include="Data\CurNotUsed\ILoginState.cs" />
+    <Compile Include="Data\CurNotUsed\IMotionDetectConfig.cs" />
+    <Compile Include="Data\CurNotUsed\IMultiDevInfo.cs" />
+    <Compile Include="Data\CurNotUsed\IOSDMaskArea.cs" />
+    <Compile Include="Data\CurNotUsed\IOSDSetting.cs" />
+    <Compile Include="Data\CurNotUsed\IPortInfo.cs" />
+    <Compile Include="Data\CurNotUsed\IPreSharedKey.cs" />
+    <Compile Include="Data\CurNotUsed\IRS485Info.cs" />
+    <Compile Include="Data\CurNotUsed\ISmtpConfig.cs" />
+    <Compile Include="Data\CurNotUsed\ISnapConfig.cs" />
+    <Compile Include="Data\CurNotUsed\KeyFormat.cs" />
+    <Compile Include="Data\CurNotUsed\KeyLength.cs" />
+    <Compile Include="Data\CurNotUsed\LogEntry.cs" />
+    <Compile Include="Data\CurNotUsed\LoginResult.cs" />
+    <Compile Include="Data\CurNotUsed\MotionSensitivity.cs" />
+    <Compile Include="Data\CurNotUsed\NetworkType.cs" />
+    <Compile Include="Data\CurNotUsed\NtpServerType.cs" />
+    <Compile Include="Data\CurNotUsed\Privileg.cs" />
+    <Compile Include="Data\CurNotUsed\SaveLocation.cs" />
+    <Compile Include="Data\CurNotUsed\SelfTestMode.cs" />
+    <Compile Include="Data\CurNotUsed\SnapPicQuality.cs" />
+    <Compile Include="Data\CurNotUsed\TimeFormat.cs" />
+    <Compile Include="Data\CurNotUsed\TimeSource.cs" />
+    <Compile Include="Data\CurNotUsed\TLSMode.cs" />
+    <Compile Include="Data\CurNotUsed\ZoomSpeed.cs" />
+    <Compile Include="Data\CurNotUsed\DateFormat.cs" />
+    <Compile Include="Data\CurNotUsed\IIpInfo.cs" />
+    <Compile Include="Data\AV\Resolution.cs" />
+    <Compile Include="Data\HelperExtension.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Folder Include="Resources\" />
+  </ItemGroup>
+  <ProjectExtensions>
+    <MonoDevelop>
+      <Properties>
+        <Policies>
+          <StandardHeader Text="&#xA; ${FileName}&#xA; &#xA; Author:&#xA;      ${AuthorName} &lt;${AuthorEmail}&gt;&#xA;&#xA; Copyright (c) ${Year} ${CopyrightHolder}&#xA;&#xA; This program is free software; you can redistribute it and/or modify&#xA; it under the terms of the GNU General Public License as published by&#xA; the Free Software Foundation; either version 2 of the License, or&#xA; (at your option) any later version.&#xA;&#xA; This program is distributed in the hope that it will be useful,&#xA; but WITHOUT ANY WARRANTY; without even the implied warranty of&#xA; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the&#xA; GNU General Public License for more details.&#xA; &#xA; You should have received a copy of the GNU General Public License&#xA; along with this program; if not, write to the Free Software&#xA; Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA&#xA;" IncludeInNewFiles="True" />
+          <ChangeLogPolicy VcsIntegration="RequireEntry" inheritsSet="Mono">
+            <MessageStyle Indent="" LastFilePostfix=":&#xA;  " IncludeDirectoryPaths="True" />
+          </ChangeLogPolicy>
+          <DotNetNamingPolicy DirectoryNamespaceAssociation="None" ResourceNamePolicy="MSBuild" />
+          <TextStylePolicy FileWidth="120" TabsToSpaces="False" inheritsSet="VisualStudio" inheritsScope="text/plain" scope="application/xml" />
+          <XmlFormattingPolicy inheritsSet="Mono" inheritsScope="application/xml" scope="application/xml" />
+          <TextStylePolicy FileWidth="120" TabsToSpaces="False" inheritsSet="VisualStudio" inheritsScope="text/plain" scope="text/plain" />
+          <TextStylePolicy FileWidth="120" TabsToSpaces="False" inheritsSet="VisualStudio" inheritsScope="text/plain" scope="text/x-csharp" />
+          <CSharpFormattingPolicy IndentSwitchBody="True" AnonymousMethodBraceStyle="NextLine" PropertyGetBraceStyle="NextLine" PropertySetBraceStyle="NextLine" EventAddBraceStyle="NextLine" EventRemoveBraceStyle="NextLine" StatementBraceStyle="NextLine" ElseNewLinePlacement="NewLine" CatchNewLinePlacement="NewLine" FinallyNewLinePlacement="NewLine" ArrayInitializerWrapping="DoNotWrap" BeforeMethodDeclarationParentheses="False" BeforeMethodCallParentheses="False" BeforeConstructorDeclarationParentheses="False" NewLineBeforeConstructorInitializerColon="SameLine" NewLineAfterConstructorInitializerColon="SameLine" BeforeIndexerDeclarationBracket="False" BeforeDelegateDeclarationParentheses="False" AfterDelegateDeclarationParameterComma="True" NewParentheses="False" IfParentheses="False" WhileParentheses="False" ForParentheses="False" ForeachParentheses="False" CatchParentheses="False" SwitchParentheses="False" LockParentheses="False" SpacesBeforeBrackets="False" inheritsSet="Mono" inheritsScope="text/x-csharp" scope="text/x-csharp" />
+          <TextStylePolicy FileWidth="120" TabsToSpaces="False" inheritsSet="VisualStudio" inheritsScope="text/plain" scope="text/x-fsharp" />
+          <FSharpFormattingPolicy scope="text/x-fsharp">
+            <DefaultFormat IndentOnTryWith="False" ReorderOpenDeclaration="False" SpaceAfterComma="True" SpaceAfterSemicolon="True" SpaceAroundDelimiter="True" SpaceBeforeArgument="True" SpaceBeforeColon="True" />
+          </FSharpFormattingPolicy>
+          <NameConventionPolicy>
+            <Rules>
+              <NamingRule Name="Namespaces" AffectedEntity="Namespace" VisibilityMask="VisibilityMask" NamingStyle="PascalCase" IncludeInstanceMembers="True" IncludeStaticEntities="True" />
+              <NamingRule Name="Types" AffectedEntity="Class, Struct, Enum, Delegate" VisibilityMask="VisibilityMask" NamingStyle="PascalCase" IncludeInstanceMembers="True" IncludeStaticEntities="True" />
+              <NamingRule Name="Interfaces" AffectedEntity="Interface" VisibilityMask="VisibilityMask" NamingStyle="PascalCase" IncludeInstanceMembers="True" IncludeStaticEntities="True">
+                <RequiredPrefixes>
+                  <String>I</String>
+                </RequiredPrefixes>
+              </NamingRule>
+              <NamingRule Name="Attributes" AffectedEntity="CustomAttributes" VisibilityMask="VisibilityMask" NamingStyle="PascalCase" IncludeInstanceMembers="True" IncludeStaticEntities="True">
+                <RequiredSuffixes>
+                  <String>Attribute</String>
+                </RequiredSuffixes>
+              </NamingRule>
+              <NamingRule Name="Event Arguments" AffectedEntity="CustomEventArgs" VisibilityMask="VisibilityMask" NamingStyle="PascalCase" IncludeInstanceMembers="True" IncludeStaticEntities="True">
+                <RequiredSuffixes>
+                  <String>EventArgs</String>
+                </RequiredSuffixes>
+              </NamingRule>
+              <NamingRule Name="Exceptions" AffectedEntity="CustomExceptions" VisibilityMask="VisibilityMask" NamingStyle="PascalCase" IncludeInstanceMembers="True" IncludeStaticEntities="True">
+                <RequiredSuffixes>
+                  <String>Exception</String>
+                </RequiredSuffixes>
+              </NamingRule>
+              <NamingRule Name="Methods" AffectedEntity="Methods" VisibilityMask="VisibilityMask" NamingStyle="PascalCase" IncludeInstanceMembers="True" IncludeStaticEntities="True" />
+              <NamingRule Name="Static Readonly Fields" AffectedEntity="ReadonlyField" VisibilityMask="Internal, Protected, Public" NamingStyle="PascalCase" IncludeInstanceMembers="False" IncludeStaticEntities="True" />
+              <NamingRule Name="Fields (Non Private)" AffectedEntity="Field" VisibilityMask="Internal, Protected, Public" NamingStyle="PascalCase" IncludeInstanceMembers="True" IncludeStaticEntities="True" />
+              <NamingRule Name="ReadOnly Fields (Non Private)" AffectedEntity="ReadonlyField" VisibilityMask="Internal, Protected, Public" NamingStyle="PascalCase" IncludeInstanceMembers="True" IncludeStaticEntities="False" />
+              <NamingRule Name="Fields (Private)" AffectedEntity="Field, ReadonlyField" VisibilityMask="Private" NamingStyle="CamelCase" IncludeInstanceMembers="True" IncludeStaticEntities="False">
+                <AllowedPrefixes>
+                  <String>_</String>
+                  <String>m_</String>
+                </AllowedPrefixes>
+              </NamingRule>
+              <NamingRule Name="Static Fields (Private)" AffectedEntity="Field" VisibilityMask="Private" NamingStyle="CamelCase" IncludeInstanceMembers="False" IncludeStaticEntities="True" />
+              <NamingRule Name="ReadOnly Fields (Private)" AffectedEntity="ReadonlyField" VisibilityMask="Private" NamingStyle="CamelCase" IncludeInstanceMembers="True" IncludeStaticEntities="False">
+                <AllowedPrefixes>
+                  <String>_</String>
+                  <String>m_</String>
+                </AllowedPrefixes>
+              </NamingRule>
+              <NamingRule Name="Constant Fields" AffectedEntity="ConstantField" VisibilityMask="VisibilityMask" NamingStyle="PascalCase" IncludeInstanceMembers="True" IncludeStaticEntities="True" />
+              <NamingRule Name="Properties" AffectedEntity="Property" VisibilityMask="VisibilityMask" NamingStyle="PascalCase" IncludeInstanceMembers="True" IncludeStaticEntities="True" />
+              <NamingRule Name="Events" AffectedEntity="Event" VisibilityMask="VisibilityMask" NamingStyle="PascalCase" IncludeInstanceMembers="True" IncludeStaticEntities="True" />
+              <NamingRule Name="Enum Members" AffectedEntity="EnumMember" VisibilityMask="VisibilityMask" NamingStyle="PascalCase" IncludeInstanceMembers="True" IncludeStaticEntities="True" />
+              <NamingRule Name="Parameters" AffectedEntity="Parameter" VisibilityMask="VisibilityMask" NamingStyle="CamelCase" IncludeInstanceMembers="True" IncludeStaticEntities="True" />
+              <NamingRule Name="Type Parameters" AffectedEntity="TypeParameter" VisibilityMask="VisibilityMask" NamingStyle="PascalCase" IncludeInstanceMembers="True" IncludeStaticEntities="True">
+                <RequiredPrefixes>
+                  <String>T</String>
+                </RequiredPrefixes>
+              </NamingRule>
+            </Rules>
+          </NameConventionPolicy>
+          <VersionControlPolicy inheritsSet="Mono">
+            <CommitMessageStyle Header="${Date:yyyy-MM-dd}  ${AuthorName}  &lt;${AuthorEmail}&gt;&#xA;&#xA;" LastFilePostfix=":&#xA;  " IncludeDirectoryPaths="True" />
+          </VersionControlPolicy>
+        </Policies>
+      </Properties>
+    </MonoDevelop>
+  </ProjectExtensions>
+</Project>
