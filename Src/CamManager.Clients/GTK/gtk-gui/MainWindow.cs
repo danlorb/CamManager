@@ -5,61 +5,238 @@ public partial class MainWindow
 {
 	private global::Gtk.UIManager UIManager;
 	
+	private global::Gtk.Action FileAction;
+	
+	private global::Gtk.Action ExitAction;
+	
+	private global::Gtk.Action ViewAction;
+	
+	private global::Gtk.Action ExtrasAction;
+	
+	private global::Gtk.Action SettingsAction;
+	
+	private global::Gtk.Action Action;
+	
+	private global::Gtk.Action AboutAction;
+	
+	private global::Gtk.ToggleAction ShowVideoAction;
+	
 	private global::Gtk.VBox vbox1;
 	
 	private global::Gtk.MenuBar menubar1;
 	
 	private global::Gtk.VBox vbox2;
 	
+	private global::Gtk.Expander expConnection;
+	
+	private global::xCom.CamManager.CamConnection ctlConnection;
+	
+	private global::Gtk.Label lblConnection;
+	
+	private global::Gtk.Expander expNavigation;
+	
+	private global::xCom.CamManager.CamNavigation ctlNavigation;
+	
+	private global::Gtk.Label lblNavigation;
+	
+	private global::Gtk.Expander expImageSettings;
+	
+	private global::xCom.CamManager.CamImageSettings ctlImageSettings;
+	
+	private global::Gtk.Label lblImageSettings;
+	
+	private global::Gtk.Expander expVideoSettings;
+	
+	private global::xCom.CamManager.CamVideoSettings ctlVideoSettings;
+	
+	private global::Gtk.Label lblVideoSettings;
+	
+	private global::Gtk.Expander expInfo;
+	
+	private global::xCom.CamManager.CamInfo ctlInfo;
+	
+	private global::Gtk.Label lblInfo;
+	
 	private global::Gtk.Statusbar statusbar1;
 
-	protected virtual void Build ()
+	protected virtual void Build()
 	{
-		global::Stetic.Gui.Initialize (this);
+		global::Stetic.Gui.Initialize(this);
 		// Widget MainWindow
-		this.UIManager = new global::Gtk.UIManager ();
-		global::Gtk.ActionGroup w1 = new global::Gtk.ActionGroup ("Default");
-		this.UIManager.InsertActionGroup (w1, 0);
-		this.AddAccelGroup (this.UIManager.AccelGroup);
+		this.UIManager = new global::Gtk.UIManager();
+		global::Gtk.ActionGroup w1 = new global::Gtk.ActionGroup("Default");
+		this.FileAction = new global::Gtk.Action("FileAction", "File", null, null);
+		this.FileAction.ShortLabel = "File";
+		w1.Add(this.FileAction, null);
+		this.ExitAction = new global::Gtk.Action("ExitAction", "Exit", null, null);
+		this.ExitAction.ShortLabel = "Exit";
+		w1.Add(this.ExitAction, null);
+		this.ViewAction = new global::Gtk.Action("ViewAction", "View", null, null);
+		this.ViewAction.ShortLabel = "View";
+		w1.Add(this.ViewAction, null);
+		this.ExtrasAction = new global::Gtk.Action("ExtrasAction", "Extras", null, null);
+		this.ExtrasAction.ShortLabel = "Extras";
+		w1.Add(this.ExtrasAction, null);
+		this.SettingsAction = new global::Gtk.Action("SettingsAction", "Settings ...", null, null);
+		this.SettingsAction.ShortLabel = "Settings ...";
+		w1.Add(this.SettingsAction, null);
+		this.Action = new global::Gtk.Action("Action", "?", null, null);
+		this.Action.ShortLabel = "?";
+		w1.Add(this.Action, null);
+		this.AboutAction = new global::Gtk.Action("AboutAction", "About ...", null, null);
+		this.AboutAction.ShortLabel = "About ...";
+		w1.Add(this.AboutAction, null);
+		this.ShowVideoAction = new global::Gtk.ToggleAction("ShowVideoAction", "Show Video", null, null);
+		this.ShowVideoAction.Sensitive = false;
+		this.ShowVideoAction.ShortLabel = "Show Video";
+		w1.Add(this.ShowVideoAction, null);
+		this.UIManager.InsertActionGroup(w1, 0);
+		this.AddAccelGroup(this.UIManager.AccelGroup);
 		this.Name = "MainWindow";
-		this.Title = "MainWindow";
+		this.Title = "xCom - CamManager";
 		this.WindowPosition = ((global::Gtk.WindowPosition)(4));
 		// Container child MainWindow.Gtk.Container+ContainerChild
-		this.vbox1 = new global::Gtk.VBox ();
+		this.vbox1 = new global::Gtk.VBox();
 		this.vbox1.Name = "vbox1";
 		this.vbox1.Spacing = 6;
 		// Container child vbox1.Gtk.Box+BoxChild
-		this.UIManager.AddUiFromString ("<ui><menubar name=\'menubar1\'/></ui>");
-		this.menubar1 = ((global::Gtk.MenuBar)(this.UIManager.GetWidget ("/menubar1")));
+		this.UIManager.AddUiFromString(@"<ui><menubar name='menubar1'><menu name='FileAction' action='FileAction'><menuitem name='ExitAction' action='ExitAction'/></menu><menu name='ViewAction' action='ViewAction'><menuitem name='ShowVideoAction' action='ShowVideoAction'/></menu><menu name='ExtrasAction' action='ExtrasAction'><menuitem name='SettingsAction' action='SettingsAction'/></menu><menu name='Action' action='Action'><menuitem name='AboutAction' action='AboutAction'/></menu></menubar></ui>");
+		this.menubar1 = ((global::Gtk.MenuBar)(this.UIManager.GetWidget("/menubar1")));
 		this.menubar1.Name = "menubar1";
-		this.vbox1.Add (this.menubar1);
-		global::Gtk.Box.BoxChild w2 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.menubar1]));
+		this.vbox1.Add(this.menubar1);
+		global::Gtk.Box.BoxChild w2 = ((global::Gtk.Box.BoxChild)(this.vbox1[this.menubar1]));
 		w2.Position = 0;
 		w2.Expand = false;
 		w2.Fill = false;
 		// Container child vbox1.Gtk.Box+BoxChild
-		this.vbox2 = new global::Gtk.VBox ();
+		this.vbox2 = new global::Gtk.VBox();
 		this.vbox2.Name = "vbox2";
 		this.vbox2.Spacing = 6;
-		this.vbox1.Add (this.vbox2);
-		global::Gtk.Box.BoxChild w3 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.vbox2]));
-		w3.Position = 1;
-		// Container child vbox1.Gtk.Box+BoxChild
-		this.statusbar1 = new global::Gtk.Statusbar ();
-		this.statusbar1.Name = "statusbar1";
-		this.statusbar1.Spacing = 6;
-		this.vbox1.Add (this.statusbar1);
-		global::Gtk.Box.BoxChild w4 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.statusbar1]));
-		w4.Position = 2;
+		this.vbox2.BorderWidth = ((uint)(6));
+		// Container child vbox2.Gtk.Box+BoxChild
+		this.expConnection = new global::Gtk.Expander(null);
+		this.expConnection.CanFocus = true;
+		this.expConnection.Name = "expConnection";
+		this.expConnection.Expanded = true;
+		// Container child expConnection.Gtk.Container+ContainerChild
+		this.ctlConnection = new global::xCom.CamManager.CamConnection();
+		this.ctlConnection.Events = ((global::Gdk.EventMask)(256));
+		this.ctlConnection.Name = "ctlConnection";
+		this.expConnection.Add(this.ctlConnection);
+		this.lblConnection = new global::Gtk.Label();
+		this.lblConnection.Name = "lblConnection";
+		this.lblConnection.LabelProp = "Connection Settings";
+		this.lblConnection.UseUnderline = true;
+		this.expConnection.LabelWidget = this.lblConnection;
+		this.vbox2.Add(this.expConnection);
+		global::Gtk.Box.BoxChild w4 = ((global::Gtk.Box.BoxChild)(this.vbox2[this.expConnection]));
+		w4.Position = 0;
 		w4.Expand = false;
 		w4.Fill = false;
-		this.Add (this.vbox1);
-		if ((this.Child != null)) {
-			this.Child.ShowAll ();
+		// Container child vbox2.Gtk.Box+BoxChild
+		this.expNavigation = new global::Gtk.Expander(null);
+		this.expNavigation.Sensitive = false;
+		this.expNavigation.CanFocus = true;
+		this.expNavigation.Name = "expNavigation";
+		// Container child expNavigation.Gtk.Container+ContainerChild
+		this.ctlNavigation = new global::xCom.CamManager.CamNavigation();
+		this.ctlNavigation.Events = ((global::Gdk.EventMask)(256));
+		this.ctlNavigation.Name = "ctlNavigation";
+		this.expNavigation.Add(this.ctlNavigation);
+		this.lblNavigation = new global::Gtk.Label();
+		this.lblNavigation.Name = "lblNavigation";
+		this.lblNavigation.LabelProp = "Navigation";
+		this.lblNavigation.UseUnderline = true;
+		this.expNavigation.LabelWidget = this.lblNavigation;
+		this.vbox2.Add(this.expNavigation);
+		global::Gtk.Box.BoxChild w6 = ((global::Gtk.Box.BoxChild)(this.vbox2[this.expNavigation]));
+		w6.Position = 1;
+		w6.Expand = false;
+		w6.Fill = false;
+		// Container child vbox2.Gtk.Box+BoxChild
+		this.expImageSettings = new global::Gtk.Expander(null);
+		this.expImageSettings.Sensitive = false;
+		this.expImageSettings.CanFocus = true;
+		this.expImageSettings.Name = "expImageSettings";
+		// Container child expImageSettings.Gtk.Container+ContainerChild
+		this.ctlImageSettings = new global::xCom.CamManager.CamImageSettings();
+		this.ctlImageSettings.Events = ((global::Gdk.EventMask)(256));
+		this.ctlImageSettings.Name = "ctlImageSettings";
+		this.expImageSettings.Add(this.ctlImageSettings);
+		this.lblImageSettings = new global::Gtk.Label();
+		this.lblImageSettings.Name = "lblImageSettings";
+		this.lblImageSettings.LabelProp = "Image Settings";
+		this.lblImageSettings.UseUnderline = true;
+		this.expImageSettings.LabelWidget = this.lblImageSettings;
+		this.vbox2.Add(this.expImageSettings);
+		global::Gtk.Box.BoxChild w8 = ((global::Gtk.Box.BoxChild)(this.vbox2[this.expImageSettings]));
+		w8.Position = 2;
+		w8.Expand = false;
+		w8.Fill = false;
+		// Container child vbox2.Gtk.Box+BoxChild
+		this.expVideoSettings = new global::Gtk.Expander(null);
+		this.expVideoSettings.Sensitive = false;
+		this.expVideoSettings.CanFocus = true;
+		this.expVideoSettings.Name = "expVideoSettings";
+		// Container child expVideoSettings.Gtk.Container+ContainerChild
+		this.ctlVideoSettings = new global::xCom.CamManager.CamVideoSettings();
+		this.ctlVideoSettings.Events = ((global::Gdk.EventMask)(256));
+		this.ctlVideoSettings.Name = "ctlVideoSettings";
+		this.expVideoSettings.Add(this.ctlVideoSettings);
+		this.lblVideoSettings = new global::Gtk.Label();
+		this.lblVideoSettings.Name = "lblVideoSettings";
+		this.lblVideoSettings.LabelProp = "Video Settings";
+		this.lblVideoSettings.UseUnderline = true;
+		this.expVideoSettings.LabelWidget = this.lblVideoSettings;
+		this.vbox2.Add(this.expVideoSettings);
+		global::Gtk.Box.BoxChild w10 = ((global::Gtk.Box.BoxChild)(this.vbox2[this.expVideoSettings]));
+		w10.Position = 3;
+		w10.Expand = false;
+		w10.Fill = false;
+		// Container child vbox2.Gtk.Box+BoxChild
+		this.expInfo = new global::Gtk.Expander(null);
+		this.expInfo.Sensitive = false;
+		this.expInfo.CanFocus = true;
+		this.expInfo.Name = "expInfo";
+		// Container child expInfo.Gtk.Container+ContainerChild
+		this.ctlInfo = new global::xCom.CamManager.CamInfo();
+		this.ctlInfo.Events = ((global::Gdk.EventMask)(256));
+		this.ctlInfo.Name = "ctlInfo";
+		this.expInfo.Add(this.ctlInfo);
+		this.lblInfo = new global::Gtk.Label();
+		this.lblInfo.Name = "lblInfo";
+		this.lblInfo.LabelProp = "Info";
+		this.lblInfo.UseUnderline = true;
+		this.expInfo.LabelWidget = this.lblInfo;
+		this.vbox2.Add(this.expInfo);
+		global::Gtk.Box.BoxChild w12 = ((global::Gtk.Box.BoxChild)(this.vbox2[this.expInfo]));
+		w12.Position = 4;
+		w12.Expand = false;
+		w12.Fill = false;
+		this.vbox1.Add(this.vbox2);
+		global::Gtk.Box.BoxChild w13 = ((global::Gtk.Box.BoxChild)(this.vbox1[this.vbox2]));
+		w13.Position = 1;
+		// Container child vbox1.Gtk.Box+BoxChild
+		this.statusbar1 = new global::Gtk.Statusbar();
+		this.statusbar1.Name = "statusbar1";
+		this.statusbar1.Spacing = 6;
+		this.vbox1.Add(this.statusbar1);
+		global::Gtk.Box.BoxChild w14 = ((global::Gtk.Box.BoxChild)(this.vbox1[this.statusbar1]));
+		w14.Position = 2;
+		w14.Expand = false;
+		w14.Fill = false;
+		this.Add(this.vbox1);
+		if((this.Child != null))
+		{
+			this.Child.ShowAll();
 		}
-		this.DefaultWidth = 400;
-		this.DefaultHeight = 300;
-		this.Show ();
-		this.DeleteEvent += new global::Gtk.DeleteEventHandler (this.OnDeleteEvent);
+		this.DefaultWidth = 266;
+		this.DefaultHeight = 631;
+		this.Show();
+		this.DeleteEvent += new global::Gtk.DeleteEventHandler(this.OnDeleteEvent);
+		this.ExitAction.Activated += new global::System.EventHandler(this.OnExitActionActivated);
+		this.SettingsAction.Activated += new global::System.EventHandler(this.OnSettingsActionActivated);
+		this.ShowVideoAction.Activated += new global::System.EventHandler(this.OnShowVideoActionActivated);
+		this.ctlConnection.ConnectionEstablished += new global::System.EventHandler<xCom.CamManager.ConnectionEventArgs>(this.OnCtlConnectionConnectionEstablished);
 	}
 }

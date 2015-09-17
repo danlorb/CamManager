@@ -30,8 +30,8 @@ namespace xCom.CamManager
 	{
 		HD_720 = 0,
 		VGA_640_480 = 1,
-		VGA_640_360 = 2,
-		QVGA_320_240 = 3,
+		VGA_640_360 = 3,
+		QVGA_320_240 = 2,
 		QVGA_320_180 = 4,
 		None = -1
 

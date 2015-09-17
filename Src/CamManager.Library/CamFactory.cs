@@ -31,6 +31,11 @@ namespace xCom.CamManager
 	{
 		private static List<ICam> _registeredCams;
 
+		public static ICam Connect(IPAddress address, int port, string username, string password)
+		{
+			return Connect(address, port, username, password, null);
+		}
+
 		/// <summary>
 		/// Creates an specified IPCam with the given address, port, username and password.
 		/// </summary>
@@ -38,13 +43,16 @@ namespace xCom.CamManager
 		/// <param name="port">The Port of the Cam.</param>
 		/// <param name="username">Username for auth.</param>
 		/// <param name="password">Password for auth</param>
-		public static ICam Connect(IPAddress address, int port, string username, string password)
+		/// <param name="errorHandler">The central ErrorHandler</param>
+		public static ICam Connect(IPAddress address, int port, string username, string password, Action<Exception> errorHandler)
 		{
 			ICam cam = null;
 			try
 			{
-				Init();
-				cam = DetectIPCam(address, port, username, password);
+				Init(address, port, username, password);
+				cam = DetectIPCam();
+				if(cam != null && errorHandler != null)
+					((AbstractCam)cam).SetErrorHandler(errorHandler);
 			}
 			catch(Exception ex)
 			{
@@ -54,17 +62,15 @@ namespace xCom.CamManager
 			return cam;
 		}
 
-
-		private static void Init()
+		private static void Init(IPAddress address, int port, string username, string password)
 		{
 			if(_registeredCams == null)
 				_registeredCams = new List<ICam>();
 
-			_registeredCams.Add(new Foscam.FI9821W());
+			_registeredCams.Add(new Foscam.FI9821W(address, port, username, password));
 		}
 
-
-		internal static ICam DetectIPCam(IPAddress address, int port, string username, string password)
+		private static ICam DetectIPCam()
 		{
 			ICam detectedCam = null;
 
@@ -79,10 +85,7 @@ namespace xCom.CamManager
 			}
 
 			if(detectedCam != null)
-			{
-				((AbstractCam)detectedCam).Init(address, port, username, password);
 				return detectedCam;
-			}
 			else
 				throw new CamException("Cam could not detected.");
 		}

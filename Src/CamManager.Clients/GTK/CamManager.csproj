@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -41,16 +41,34 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Configuration" />
+    <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="gtk-gui\gui.stetic">
       <LogicalName>gui.stetic</LogicalName>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources\MainWindowStrings.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LogicalName>MainWindowStrings.resx</LogicalName>
-      <LastGenOutput>MainWindowStrings.Designer.cs</LastGenOutput>
+    <EmbeddedResource Include="Resources\CamConnectionStrings.resx">
+      <LastGenOutput>CamConnectionStrings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\CamConnectionStrings.de-DE.resx" />
+    <EmbeddedResource Include="Resources\MainWindowStrings.resx" />
+    <EmbeddedResource Include="Resources\MainWindowStrings.de-DE.resx" />
+    <EmbeddedResource Include="Resources\SettingsDialogStrings.resx">
+      <LastGenOutput>SettingsDialogStrings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\SettingsDialogStrings.de-DE.resx" />
+    <EmbeddedResource Include="Resources\CamNavigationStrings.resx">
+      <LastGenOutput>CamNavigationStrings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\CamNavigationStrings.de-DE.resx" />
+    <EmbeddedResource Include="Resources\CamImageSettingsStrings.resx">
+      <LastGenOutput>CamImageSettingsStrings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\CamImageSettingsStrings.de-DE.resx" />
+    <EmbeddedResource Include="Resources\CamVideoSettingsStrings.resx">
+      <LastGenOutput>CamVideoSettingsStrings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\CamVideoSettingsStrings.de-DE.resx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="gtk-gui\generated.cs" />
@@ -58,12 +76,29 @@
     <Compile Include="gtk-gui\MainWindow.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Resources\MainWindowStrings.Designer.cs">
-      <DependentUpon>MainWindowStrings.resx</DependentUpon>
-    </Compile>
     <Compile Include="CultureManager.cs" />
-    <Compile Include="IPCamSettings.cs" />
     <Compile Include="SettingsManager.cs" />
+    <Compile Include="Widgets\CamConnection.cs" />
+    <Compile Include="gtk-gui\xCom.CamManager.CamConnection.cs" />
+    <Compile Include="SettingsDialog.cs" />
+    <Compile Include="gtk-gui\xCom.CamManager.SettingsDialog.cs" />
+    <Compile Include="CamSettings.cs" />
+    <Compile Include="Widgets\CamNavigation.cs" />
+    <Compile Include="gtk-gui\xCom.CamManager.CamNavigation.cs" />
+    <Compile Include="Widgets\BaseWidget.cs" />
+    <Compile Include="gtk-gui\xCom.CamManager.BaseWidget.cs" />
+    <Compile Include="Widgets\ConnectionEventArgs.cs" />
+    <Compile Include="Widgets\CamImageSettings.cs" />
+    <Compile Include="gtk-gui\xCom.CamManager.CamImageSettings.cs" />
+    <Compile Include="Widgets\CamVideoSettings.cs" />
+    <Compile Include="gtk-gui\xCom.CamManager.CamVideoSettings.cs" />
+    <Compile Include="Widgets\StreamKindChangedEventArgs.cs" />
+    <Compile Include="Widgets\PresetDialog.cs" />
+    <Compile Include="gtk-gui\xCom.CamManager.PresetDialog.cs" />
+    <Compile Include="Widgets\CamInfo.cs" />
+    <Compile Include="gtk-gui\xCom.CamManager.CamInfo.cs" />
+    <Compile Include="MessageBoxHelper.cs" />
+    <Compile Include="MPlayerHelper.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
@@ -79,8 +114,9 @@
       <Name>CamManager.Library</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Widgets\" />
-    <Folder Include="Resources\" />
+    <None Include="ChangeLog.txt" />
+    <None Include="app.config" />
   </ItemGroup>
 </Project>

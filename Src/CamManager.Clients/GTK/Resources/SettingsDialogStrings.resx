@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="lblLanguage_Text" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="lblDefault_Text" xml:space="preserve">
+    <value>General</value>
+  </data>
+  <data name="btnCancel_Text" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="btnOk_Text" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="lblMPlayer_Text" xml:space="preserve">
+    <value>MPlayer location</value>
+  </data>
+  <data name="xCom.CamManager.SettingsDialog_Text" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="lblMPlayerParams_Text" xml:space="preserve">
+    <value>MPlayer Parameters</value>
+  </data>
+</root>

@@ -49,6 +49,12 @@ namespace xCom.CamManager
 			return value != null ? ChangeType<int>(value) : defaultValue;			
 		}
 
+		internal static TEnum ReadEnumValue<TEnum>(this IDictionary<string, string> values, string key)
+		{
+			var value = ReadValue<string>(values, key);
+			return (TEnum)Enum.Parse(typeof(TEnum), value);
+		}
+
 		internal static TReturnType ReadValue<TReturnType>(this IDictionary<string, string> values, string key, TReturnType defaultValue = default(TReturnType)) where TReturnType : class
 		{
 			string tmp = null;

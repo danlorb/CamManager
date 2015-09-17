@@ -20,15 +20,23 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 //
+using System.Net;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace xCom.CamManager.Foscam
 {
-	using System;
-	using System.Collections.Generic;
-	using System.Linq;
-
 	public class FI9821W : AbstractCam
 	{
+		public FI9821W(IPAddress address, int port, string username, string password)
+		{
+			Address = address;
+			Port = port;
+			UserName = username;
+			Password = password;
+		}
+
 		private string CreateCommandUrl(string command, Tuple<string, string>[] parameters)
 		{
 			var url = string.Format("http://{0}:{1}/cgi-bin/CGIProxy.fcgi?usr={2}&pwd={3}&cmd={4}", Address, Port, UserName, Password, command);
@@ -49,8 +57,18 @@ namespace xCom.CamManager.Foscam
 
 		protected override ResultSet Execute(string command, params Tuple<string, string>[] parameters)
 		{
-			var url = CreateCommandUrl(command, parameters);
-			return Execute(url);
+			ResultSet result = null;
+
+			try
+			{
+				var url = CreateCommandUrl(command, parameters);
+				result = ExecuteCommand(url);
+			}
+			catch(Exception ex)
+			{
+				ThrowError(ex);
+			}
+			return result;
 		}
 
 
@@ -104,6 +122,38 @@ namespace xCom.CamManager.Foscam
 		public override void MoveToDefaultPos()
 		{
 			Execute("ptzReset");
+		}
+
+		public override IEnumerable<string> GetPresetPointList()
+		{
+			var result = Execute("getPTZPresetPointList");
+
+			var resultList = new List<string>();
+			var count = result.Values.ReadIntValue("cnt");
+			for(int i = 0; i < count; i++)
+			{
+				var tmp = result.Values.ReadValue<string>(string.Format("point{0}", i));
+				resultList.Add(tmp);
+			}
+			return resultList;
+		}
+
+		public override void AddPresetPoint(string name)
+		{
+			var parameter = new Tuple<string, string>("name", name);
+			var result = Execute("ptzAddPresetPoint", parameter);
+		}
+
+		public override void DeletePresetPoint(string name)
+		{
+			var parameter = new Tuple<string, string>("name", name);
+			var result = Execute("ptzDeletePresetPoint", parameter);
+		}
+
+		public override void GotoPresetPoint(string name)
+		{
+			var parameter = new Tuple<string, string>("name", name);
+			var result = Execute("ptzGotoPresetPoint", parameter);
 		}
 
 		#endregion
@@ -234,26 +284,15 @@ namespace xCom.CamManager.Foscam
 		}
 
 		private void SetVideoStreamInfoInternal(string command, StreamType streamType, IVideoStreamInfo streamInfo)
-		{
-			var realStreamType = -1;
-
-			if(streamType == StreamType.HD)
-				realStreamType = 0;
-			else if(streamType == StreamType.Equilibrium)
-				realStreamType = 1;
-			else if(streamType == StreamType.VGA)
-				realStreamType = 2;
-			else if(streamType == StreamType.Custom)
-				realStreamType = 3;
-
-			var streamTypeParam = new Tuple<string, string>("streamTyp", realStreamType.ToString());
-			var resolutionParam = new Tuple<string, string>("resolution", streamInfo.Resolution.ToString());
+		{			
+			var streamTypeParam = new Tuple<string, string>("streamType", ((int)streamType - 1).ToString());
+			var resolutionParam = new Tuple<string, string>("resolution", ((int)streamInfo.Resolution).ToString());
 			var bitRateParam = new Tuple<string, string>("bitRate", streamInfo.BitRate.ToString());
 			var frameRateParam = new Tuple<string, string>("frameRate", streamInfo.FrameRate.ToString());
 			var gopParam = new Tuple<string, string>("GOP", streamInfo.GOP.ToString());
-			var vbrParam = new Tuple<string, string>("isVBR", streamInfo.IsVBR ? "0" : "1");
+			var vbrParam = new Tuple<string, string>("isVBR", streamInfo.IsVBR ? "1" : "0");
 
-			Execute("setVideoStreamParam", streamTypeParam, resolutionParam, bitRateParam, frameRateParam, gopParam, vbrParam);
+			Execute(command, streamTypeParam, resolutionParam, bitRateParam, frameRateParam, gopParam, vbrParam);
 		}
 
 		public override StreamType GetMainVideoStreamType()
@@ -300,8 +339,16 @@ namespace xCom.CamManager.Foscam
 			Execute(command, parameter);
 		}
 
+		public override void SetSubStreamFormat(StreamFormat streamFormat)
+		{
+			var parameter = new Tuple<string, string>("format", ((int)streamFormat).ToString());
+			var result = Execute("setSubStreamFormat", parameter);
+		}
+
 		public override System.IO.Stream GetMJStream()
 		{
+			SetSubStreamFormat(StreamFormat.MotionJpeg);
+
 			var url = string.Format("http://{0}:{1}/cgi-bin/CGIStream.cgi?usr={2}&pwd={3}&cmd=GetMJStream", Address, Port, UserName, Password);
 
 			return ExecuteRawCommand(url);
@@ -315,6 +362,24 @@ namespace xCom.CamManager.Foscam
 		{
 			var result = Execute("getDevInfo");
 			return DeviceInfo.Parse(result.Values);
+		}
+
+		public override bool OpenInfraLed()
+		{
+			var result = Execute("openInfraLed");
+			return result.Values.ReadBoolValue("ctrlResult");
+		}
+
+		public override bool CloseInfraLed()
+		{
+			var result = Execute("closeInfraLed");
+			return result.Values.ReadBoolValue("ctrlResult");
+		}
+
+		public override IDeviceState GetDeviceState()
+		{
+			var result = Execute("getDevState");
+			return DeviceState.Parse(result.Values);
 		}
 
         

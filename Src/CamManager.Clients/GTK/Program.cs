@@ -31,7 +31,16 @@ namespace xCom.CamManager
 		public static void Main(string[] args)
 		{
 			Application.Init();
-			MainWindow win = new MainWindow();
+//			AppDomain.CurrentDomain.FirstChanceException += (sender, e) =>
+//			{
+//				MessageBoxHelper.ShowError(new CamException("This is a First Chance Exception", e.Exception));
+//			};
+			AppDomain.CurrentDomain.UnhandledException += (sender, e) =>
+			{
+				var tmp = e.ExceptionObject as Exception;
+				MessageBoxHelper.ShowError(new CamException("An Unhandled Exception is occured!", tmp));
+			};
+			var win = new MainWindow();
 			win.Show();
 			Application.Run();
 		}

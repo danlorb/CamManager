@@ -13,33 +13,33 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="lblConnection_Text" xml:space="preserve">
-    <value>Connection Settings</value>
+    <value>Verbindungseinstellungen</value>
   </data>
   <data name="AboutAction_Text" xml:space="preserve">
-    <value>About</value>
+    <value>Über</value>
   </data>
   <data name="ExitAction_Text" xml:space="preserve">
-    <value>Exit</value>
+    <value>Beenden</value>
   </data>
   <data name="ExtrasAction_Text" xml:space="preserve">
     <value>Extras</value>
   </data>
   <data name="FileAction_Text" xml:space="preserve">
-    <value>File</value>
+    <value>Datei</value>
   </data>
   <data name="SettingsAction_Text" xml:space="preserve">
-    <value>Settings ...</value>
+    <value>Einstellungen ...</value>
   </data>
   <data name="ViewAction_Text" xml:space="preserve">
-    <value>View</value>
+    <value>Ansicht</value>
   </data>
   <data name="lblNavigation_Text" xml:space="preserve">
     <value>Navigation</value>
   </data>
   <data name="lblImageSettings_Text" xml:space="preserve">
-    <value>Image Settings</value>
+    <value>Bildeinstellungenen</value>
   </data>
   <data name="lblVideoSettings_Text" xml:space="preserve">
-    <value>Video Settings</value>
+    <value>Videoeinstellungen</value>
   </data>
 </root>

@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="chkNightMode_Text" xml:space="preserve">
+    <value>Nacht Modus</value>
+  </data>
+  <data name="chkMirror_Text" xml:space="preserve">
+    <value>Spiegeln</value>
+  </data>
+  <data name="chkFlip_Text" xml:space="preserve">
+    <value>Kippen</value>
+  </data>
+  <data name="btnTopRight_Text" xml:space="preserve">
+    <value>Oben Rechts</value>
+  </data>
+  <data name="btnTopLeft_Text" xml:space="preserve">
+    <value>Oben Links</value>
+  </data>
+  <data name="btnTop_Text" xml:space="preserve">
+    <value>Oben</value>
+  </data>
+  <data name="btnRight_Text" xml:space="preserve">
+    <value>Rechts</value>
+  </data>
+  <data name="btnMiddle_Text" xml:space="preserve">
+    <value>Mitte</value>
+  </data>
+  <data name="btnLeft_Text" xml:space="preserve">
+    <value>Links</value>
+  </data>
+  <data name="btnBottomRight_Text" xml:space="preserve">
+    <value>Unten Rechts</value>
+  </data>
+  <data name="btnBottomLeft_Text" xml:space="preserve">
+    <value>Unten Links</value>
+  </data>
+  <data name="btnBottom_Text" xml:space="preserve">
+    <value>Unten</value>
+  </data>
+  <data name="lblPresetHeader_Text" xml:space="preserve">
+    <value>Gespeicherte Positionen</value>
+  </data>
+  <data name="lblPreset_Text" xml:space="preserve">
+    <value>Positionen</value>
+  </data>
+  <data name="btnAddPreset_Text" xml:space="preserve">
+    <value>Neu ...</value>
+  </data>
+  <data name="btnRemovePreset_Text" xml:space="preserve">
+    <value>Löschen</value>
+  </data>
+  <data name="btnPlayPreset_Text" xml:space="preserve">
+    <value>Gehe zu ...</value>
+  </data>
+</root>

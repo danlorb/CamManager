@@ -1,0 +1,20 @@
+# Install Mono
+$sudo apt-get install gtk-sharp2
+
+# Install MPlayer
+$sudo apt-get update
+$sudo apt-get install mplayer alsa-base alsa-utils pulseaudio mpg123
+$sudo reboot
+
+# change /boot/config.txt
+
+
+# Settings Webcam
+VGA 640*480
+Bitrate: 1M
+Framerate 20
+GOP 60
+VBR Yes
+
+# mplayer settings
+-msglevel all=4 -ao alsa -vo sdl -vfm ffmpeg

@@ -1,5 +1,5 @@
 ﻿//
-//  IVideoStreamInfo.cs
+//  PresetDialog.cs
 //
 //  Author:
 //       Roland Breitschaft <roland.breitschaft@x-company.de>
@@ -20,53 +20,32 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 //
-
 using System;
-using System.Net;
 
 namespace xCom.CamManager
 {
-	public interface IVideoStreamInfo
+	public partial class PresetDialog : Gtk.Dialog
 	{
-		Resolution Resolution{ get; set; }
+		public PresetDialog()
+		{
+			this.Build();
+		}
 
-		int BitRate { get; set; }
+		public string PresetName {
+			get{ return txtPresetName.Text; }
+		}
 
-		int FrameRate { get; set; }
+		protected void OnBtnOkClicked(object sender, EventArgs e)
+		{
+			this.Respond(Gtk.ResponseType.Ok);
+			this.Hide();
+		}
 
-		int GOP{ get; set; }
-
-		bool IsVBR { get; set; }
+		protected void OnBtnCancelClicked(object sender, EventArgs e)
+		{
+			this.Respond(Gtk.ResponseType.Cancel);
+			this.Hide();
+		}
 	}
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

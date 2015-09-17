@@ -32,26 +32,15 @@ namespace xCom.CamManager
 {
 	public abstract class AbstractCam : ICam
 	{
-		private static int _port;
-		private static IPAddress _address;
-		private static string _username;
-		private static string _password;
+		private Action<Exception> _handler;
 
-		internal void Init(IPAddress address, int port, string user, string password)
-		{
-			_address = address;
-			_port = port;
-			_username = user;
-			_password = password;
-		}
+		protected IPAddress Address { get; set; }
 
-		protected IPAddress Address { get { return _address; } }
+		protected int Port { get; set; }
 
-		protected int Port { get { return _port; } }
+		protected string UserName { get; set; }
 
-		protected string UserName { get { return _username; } }
-
-		protected string Password { get { return _password; } }
+		protected string Password { get; set; }
 
 		protected abstract ResultSet Execute(string command, params Tuple<string, string>[] parameters);
 
@@ -60,11 +49,18 @@ namespace xCom.CamManager
 			var result = new ResultSet();
 			var client = new WebClient();
 
-			using (var stream = new StreamReader(client.OpenRead(url))) {
-				var tmp = stream.ReadToEnd();
-				result = ParseResult(tmp);
+			try
+			{
+				using (var stream = new StreamReader(client.OpenRead(url)))
+				{
+					var tmp = stream.ReadToEnd();
+					result = ParseResult(tmp);
+				}
 			}
-            
+			catch(Exception ex)
+			{
+				throw new CamException("An unspecified Error while processing is occured.", ex);
+			}
 
 			if(result.State == ResultState.Success)
 				return result;
@@ -86,32 +82,45 @@ namespace xCom.CamManager
 
 		protected Stream ExecuteRawCommand(string url)
 		{
-			var client = new WebClient();
+			System.IO.Stream stream = null;
+			try
+			{
+				var client = new WebClient();
+				stream = client.OpenRead(url);
+			}
+			catch(Exception ex)
+			{
+				throw new CamException("An unspecified Error while opening Stream is occured.", ex);
+			}
 
-			return client.OpenRead(url);
+			return stream;
 		}
 
 		protected ResultSet ParseResult(string cgiResultString)
 		{
 			var result = new ResultSet();
 
-			if(string.IsNullOrEmpty(cgiResultString)) {
+			if(string.IsNullOrEmpty(cgiResultString))
+			{
 				result.State = ResultState.UnknownError;
 				return result;
 			}
 
 			var values = new Dictionary<string, string>();
 			var xDoc = XDocument.Parse(cgiResultString);
-			xDoc.Element("CGI_Result").Elements().ToList().ForEach(x => {
+			xDoc.Element("CGI_Result").Elements().ToList().ForEach(x =>
+			{
 				var key = x.Name.ToString();
 				var value = x.Value;
 				values.Add(key, value);
 			});
 
 			var stateString = string.Empty;
-			if(values.TryGetValue("result", out stateString)) {
+			if(values.TryGetValue("result", out stateString))
+			{
 				var state = ResultState.None;
-				if(Enum.TryParse<ResultState>(stateString, out state)) {
+				if(Enum.TryParse<ResultState>(stateString, out state))
+				{
 					result.State = state;
 					values.Remove("result");
 				}
@@ -119,6 +128,17 @@ namespace xCom.CamManager
 
 			result.Values = values;
 			return result;
+		}
+
+		protected void ThrowError(Exception ex)
+		{
+			if(_handler != null)
+				_handler(ex);
+		}
+
+		internal void SetErrorHandler(Action<Exception> handler)
+		{
+			_handler = handler;
 		}
 
 		#region PTZ Handling
@@ -328,6 +348,11 @@ namespace xCom.CamManager
 		}
 
 		public virtual void SetSubVideoStreamType(StreamType streamType)
+		{
+
+		}
+
+		public virtual void SetSubStreamFormat(StreamFormat streamFormat)
 		{
 
 		}

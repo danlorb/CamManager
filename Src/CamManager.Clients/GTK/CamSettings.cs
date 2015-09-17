@@ -3,38 +3,24 @@ using System.Net;
 
 namespace xCom.CamManager
 {
-	public class IPCamSettings
+	public class CamSettings
 	{
 		private ICam _cam;
 
-		public IPCamSettings()
+		public CamSettings()
 		{
+			IsMainStream = true;
 		}
 
-		public string MPlayerLocation {
-			get;
-			set;
-		}
+		public IPAddress Address { get; set; }
 
-		public IPAddress Address {
-			get;
-			set;
-		}
+		public int Port { get; set; }
 
-		public int Port {
-			get;
-			set;
-		}
+		public string UserName { get; set; }
 
-		public string UserName {
-			get;
-			set;
-		}
+		public string Password { get; set; }
 
-		public string Password {
-			get;
-			set;
-		}
+		public bool IsMainStream { get; set; }
 
 		public ICam Connect()
 		{
@@ -48,7 +34,12 @@ namespace xCom.CamManager
 				throw new CamException("No Password given");
 
 			if(_cam == null)
-				_cam = CamFactory.Connect(Address, Port, UserName, Password);
+			{
+				_cam = CamFactory.Connect(Address, Port, UserName, Password, (ex) =>
+				{
+					MessageBoxHelper.ShowError(ex);
+				});
+			}
 
 			return _cam;
 		}

@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="lblVariableBitrate_Text" xml:space="preserve">
+    <value>Variable Bitrate?</value>
+  </data>
+  <data name="lblStreamType_Text" xml:space="preserve">
+    <value>Typ des Streams</value>
+  </data>
+  <data name="lblStreamKind_Text" xml:space="preserve">
+    <value>Art des Streams</value>
+  </data>
+  <data name="lblResolution_Text" xml:space="preserve">
+    <value>Auflösung</value>
+  </data>
+  <data name="lblGroupOfPics_Text" xml:space="preserve">
+    <value>Keyframe-Abstand</value>
+  </data>
+  <data name="lblFramerate_Text" xml:space="preserve">
+    <value>Einzelbilder/sec.</value>
+  </data>
+  <data name="lblBitrate_Text" xml:space="preserve">
+    <value>Bitrate</value>
+  </data>
+  <data name="btnSetStreamType_Text" xml:space="preserve">
+    <value>Umschalten</value>
+  </data>
+  <data name="btnSave_Text" xml:space="preserve">
+    <value>Speichern</value>
+  </data>
+</root>

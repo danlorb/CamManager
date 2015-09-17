@@ -1,5 +1,5 @@
 ﻿//
-//  IVideoStreamInfo.cs
+//  CamInfo.cs
 //
 //  Author:
 //       Roland Breitschaft <roland.breitschaft@x-company.de>
@@ -20,53 +20,17 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 //
-
 using System;
-using System.Net;
 
 namespace xCom.CamManager
 {
-	public interface IVideoStreamInfo
+	[System.ComponentModel.ToolboxItem(true)]
+	public partial class CamInfo : BaseWidget
 	{
-		Resolution Resolution{ get; set; }
-
-		int BitRate { get; set; }
-
-		int FrameRate { get; set; }
-
-		int GOP{ get; set; }
-
-		bool IsVBR { get; set; }
+		public CamInfo()
+		{
+			this.Build();
+		}
 	}
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

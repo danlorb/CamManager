@@ -22,11 +22,34 @@
 //
 
 using System;
+using System.Collections.Generic;
 
 namespace xCom.CamManager
 {
 	public sealed class DeviceState : IDeviceState
 	{
+		public static IDeviceState Parse(Dictionary<string, string> values)
+		{
+			var state = new DeviceState();
+
+			state.IOAlarm = values.ReadEnumValue<AlarmType>("IOAlarm");
+			state.MotionDetectAlarm = values.ReadEnumValue<AlarmType>("motionDetectAlarm");
+			state.SoundAlarm = values.ReadEnumValue < AlarmType>("soundAlarm");
+			state.IsRecording = values.ReadBoolValue("record");
+			state.CardState = values.ReadEnumValue<SDCardState>("sdState");
+			state.CardFreeSpace = values.ReadValue<string>("sdFreeSpace");
+			state.CardTotalSpace = values.ReadValue<string>("sdTotalSpace");
+			state.NtpState = values.ReadEnumValue<NtpState>("ntpState");
+			state.DDNSState = values.ReadEnumValue<DDNSState>("ddnsState");
+			state.DDNSUrl = values.ReadValue<string>("url");
+			state.UPnPState = values.ReadEnumValue<UPnPState>("upnpState");
+			state.IsWifiConnected = values.ReadBoolValue("isWifiConnected");
+			state.WifiSSID = values.ReadValue<string>("wifiConnectedAP");
+			state.InfraLedState = values.ReadBoolValue("infraLedState");
+
+			return state;
+		}
+
 		#region IDeviceState implementation
 
 		public AlarmType IOAlarm { get; private set; }
@@ -47,7 +70,7 @@ namespace xCom.CamManager
 
 		public DDNSState DDNSState { get; private set; }
 
-		public Uri DDNSUrl { get; private set; }
+		public string DDNSUrl { get; private set; }
 
 		public UPnPState UPnPState { get; private set; }
 

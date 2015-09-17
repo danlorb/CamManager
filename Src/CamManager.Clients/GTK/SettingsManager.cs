@@ -21,43 +21,50 @@ namespace xCom.CamManager
 			if(_settings != null && _settings.TryGetValue(key, out result))
 				return result;			
 
-			throw new CamException("Key could not found.", new KeyNotFoundException());
+			return result;
 		}
 
 		internal static void SaveSetting(string key, string value)
-		{
+		{			
 			LoadSettingsFile();
 
 			var tmp = string.Empty;
 			if(!_settings.TryGetValue(key, out tmp))
 				_settings.Add(key, value);
 			else
-				_settings[key] = value;
+			{
+				if(!string.IsNullOrEmpty(value))
+					_settings[key] = value;
+				else
+					_settings[key] = tmp;
+			}	
 		}
 
 		private static void LoadSettingsFile()
 		{
 			if(_settings != null)
 				return;
-			else {
+			else
+			{
 				_settings = new Dictionary<string, string>();
 
 				// Load Default Settings
 				var lang = ConfigurationManager.AppSettings["lang"];
 				var mplayer = ConfigurationManager.AppSettings["mplayer"];
+				var mplayer_params = ConfigurationManager.AppSettings["mplayer_params"];
 
-				SaveSetting("lang", lang);
-				SaveSetting("mplayer", mplayer);
+				_settings.Add("lang", lang);
+				_settings.Add("mplayer", mplayer);
+				_settings.Add("mplayer_params", mplayer_params);
 			}
 			
 			var xDoc = XDocument.Load(CreateFile());
-			xDoc.Element("settings").Elements("setting").ToList().ForEach(x => {
+			xDoc.Element("settings").Elements("setting").ToList().ForEach(x =>
+			{
 				var key = x.Attribute("key").Value;
 				var value = x.Attribute("value").Value;
-				var temp = string.Empty;
 
-				if(!_settings.TryGetValue(key, out temp))
-					_settings.Add(key, x.Value);
+				SaveSetting(key, value);
 			});
 				
 		}
@@ -72,7 +79,8 @@ namespace xCom.CamManager
 			var xRoot = new XElement("settings");
 			xDoc.Add(xRoot);
 
-			foreach(var kvp in _settings) {
+			foreach(var kvp in _settings)
+			{
 				xRoot.Add(new XElement("setting",
 					new XAttribute("key", kvp.Key), 
 					new XAttribute("value", kvp.Value)));
@@ -84,12 +92,17 @@ namespace xCom.CamManager
 		private static string CreateFile(bool createFilePhysical = true)
 		{
 			var path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
-			var appPath = System.IO.Path.Combine(path, "FOSCAM");
+			var appPath = System.IO.Path.Combine(path, "xCom");
+			if(!Directory.Exists(appPath))
+				Directory.CreateDirectory(appPath);
+
+			appPath = System.IO.Path.Combine(appPath, "CamManager");
 			if(!Directory.Exists(appPath))
 				Directory.CreateDirectory(appPath);
 
 			var file = Path.Combine(appPath, "settings.xml");
-			if(createFilePhysical && !File.Exists(file)) {
+			if(createFilePhysical && !File.Exists(file))
+			{
 				XDocument xdoc = new XDocument();
 				xdoc.Add(new XElement("settings"));
 				xdoc.Save(file);

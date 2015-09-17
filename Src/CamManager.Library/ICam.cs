@@ -144,6 +144,8 @@ namespace xCom.CamManager
 
 		void SetSubVideoStreamType(StreamType streamType);
 
+		void SetSubStreamFormat(StreamFormat streamFormat);
+
 		Stream GetMJStream();
 
 		/* Currently not used

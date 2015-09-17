@@ -30,6 +30,7 @@ using System.Runtime.CompilerServices;
 
 // Information about this assembly is defined by the following attributes.
 // Change them to the values specific to your project.
+using System.Resources;
 
 [assembly: AssemblyTitle("CamManager")]
 [assembly: AssemblyDescription("")]
@@ -39,6 +40,7 @@ using System.Runtime.CompilerServices;
 [assembly: AssemblyCopyright("IT Solutions Roland Breitschaft")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
+//[assembly: NeutralResourcesLanguage("en-US")]
 
 // The assembly version has the format "{Major}.{Minor}.{Build}.{Revision}".
 // The form "{Major}.{Minor}.*" will automatically update the build and revision,

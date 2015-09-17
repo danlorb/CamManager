@@ -48,7 +48,7 @@ namespace xCom.CamManager
 
 		DDNSState DDNSState{ get; }
 
-		Uri DDNSUrl { get; }
+		string DDNSUrl { get; }
 
 		UPnPState UPnPState{ get; }
 

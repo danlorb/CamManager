@@ -36,22 +36,22 @@ namespace xCom.CamManager
 			info.BitRate = values.ReadIntValue(string.Format("bitRate{0}", index));
 			info.FrameRate = values.ReadIntValue(string.Format("frameRate{0}", index));
 			info.GOP = values.ReadIntValue(string.Format("GOP{0}", index));
-			info.IsVBR = values.ReadBoolValue(string.Format("isVBR{0}", index));
+			info.IsVBR = values.ReadIntValue(string.Format("isVBR{0}", index)) == 1 ? true : false;
 
 			return info;
 		}
 
 		#region IVideoStreamInfo implementation
 
-		public Resolution Resolution { get; private set; }
+		public Resolution Resolution { get; set; }
 
-		public int BitRate { get; private set; }
+		public int BitRate { get; set; }
 
-		public int FrameRate { get; private set; }
+		public int FrameRate { get; set; }
 
-		public int GOP { get; private set; }
+		public int GOP { get; set; }
 
-		public bool IsVBR { get; private set; }
+		public bool IsVBR { get; set; }
 
 		#endregion
 	}
