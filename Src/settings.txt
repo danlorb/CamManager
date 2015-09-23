@@ -1,13 +1,35 @@
+# Raspberry Settings
+/boot/config.txt
+hdmi_drive=1
+hdmi_group=2
+hdmi_mode=16
+gpu_mem=128
+gpu_mem_256=112
+gpu_mem_512=160
+gpu_mem_1024=320
+
+Execute raspi-config
+Overclock -> Pi2
+MemorySplit -> 320
+Audio Force -> 3.5mm
+Enable DeviceTree
+
+# Update System
+sudo apt-get update
+sudo apt-get upgrade
+
+sudo reboot
+
+# Update Firmware
+sudo rpi-update
+
+sudo reboot
+
 # Install Mono
-$sudo apt-get install gtk-sharp2
+sudo apt-get install gtk-sharp2
 
 # Install MPlayer
-$sudo apt-get update
-$sudo apt-get install mplayer alsa-base alsa-utils pulseaudio mpg123
-$sudo reboot
-
-# change /boot/config.txt
-
+sudo apt-get install mplayer alsa-base alsa-utils pulseaudio mpg123
 
 # Settings Webcam
 VGA 640*480
@@ -18,3 +40,4 @@ VBR Yes
 
 # mplayer settings
 -msglevel all=4 -ao alsa -vo sdl -vfm ffmpeg
+
