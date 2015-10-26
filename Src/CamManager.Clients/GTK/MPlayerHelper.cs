@@ -72,8 +72,14 @@ namespace xCom.CamManager
 //			_outputThread = new Thread(readOutputProc);
 //			_outputThread.Start();
 
-			_errorThread = new Thread(readErrorProc);
-			_errorThread.Start();
+			// 27.10.2015 roland.breitschaft@x-company.de
+			// By every single and small Error Process will exited.
+			// This is not useable
+			// ToDo: Create an detailed Error Scanner to decide if Process
+			// will exited
+			//
+			//_errorThread = new Thread(readErrorProc);
+			//_errorThread.Start();
 		}
 
 		internal void Stop()
