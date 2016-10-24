@@ -39,15 +39,18 @@ namespace xCom.CamManager.Foscam
 
 		private string CreateCommandUrl(string command, Tuple<string, string>[] parameters)
 		{
-			var url = string.Format("http://{0}:{1}/cgi-bin/CGIProxy.fcgi?usr={2}&pwd={3}&cmd={4}", Address, Port, UserName, Password, command);
+            //var url = string.Format("http://{0}:{1}/cgi-bin/CGIProxy.fcgi?usr={2}&pwd={3}&cmd={4}", Address, Port, UserName, Password, command);
+            var url = $"http://{Address}:{Port}/cgi-bin/CGIProxy.fcgi?usr={UserName}&pwd={Password}&cmd={command}";
 
-			var parameterUrl = string.Empty;
+
+            var parameterUrl = string.Empty;
 			if(parameters != null && parameters.Count() > 0)
 			{
 				foreach(var parameter in parameters)
 				{
-					parameterUrl += string.Format("&{0}={1}", parameter.Item1, parameter.Item2);
-				}
+					//parameterUrl += string.Format("&{0}={1}", parameter.Item1, parameter.Item2);
+                    parameterUrl += $"&{parameter.Item1}={parameter.Item2}";
+                }
 
 				url += parameterUrl;
 			}
@@ -132,7 +135,7 @@ namespace xCom.CamManager.Foscam
 			var count = result.Values.ReadIntValue("cnt");
 			for(int i = 0; i < count; i++)
 			{
-				var tmp = result.Values.ReadValue<string>(string.Format("point{0}", i));
+				var tmp = result.Values.ReadValue<string>($"point{i}");
 				resultList.Add(tmp);
 			}
 			return resultList;
@@ -349,9 +352,10 @@ namespace xCom.CamManager.Foscam
 		{
 			SetSubStreamFormat(StreamFormat.MotionJpeg);
 
-			var url = string.Format("http://{0}:{1}/cgi-bin/CGIStream.cgi?usr={2}&pwd={3}&cmd=GetMJStream", Address, Port, UserName, Password);
+			//var url = string.Format("http://{0}:{1}/cgi-bin/CGIStream.cgi?usr={2}&pwd={3}&cmd=GetMJStream", Address, Port, UserName, Password);
+            var url = $"http://{Address}:{Port}/cgi-bin/CGIStream.cgi?usr={UserName}&pwd={Password}&cmd=GetMJStream";
 
-			return ExecuteRawCommand(url);
+            return ExecuteRawCommand(url);
 		}
 
 		#endregion
