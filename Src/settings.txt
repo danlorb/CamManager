@@ -17,6 +17,7 @@ Enable DeviceTree
 # Update System
 sudo apt-get update
 sudo apt-get upgrade
+sudo apt-get dist-upgrade
 
 sudo reboot
 
@@ -29,7 +30,7 @@ sudo reboot
 sudo apt-get install gtk-sharp2
 
 # Install MPlayer
-sudo apt-get install mplayer alsa-base alsa-utils pulseaudio mpg123
+sudo apt-get install mplayer alsa-base alsa-utils pulseaudio mpg123 lame exaile
 
 # Settings Webcam
 VGA 640*480
